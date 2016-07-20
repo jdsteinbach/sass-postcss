@@ -84,6 +84,9 @@ body {
   p,
   li {
     font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 22.5em;
 
     &:last-child {
       margin-bottom: 0;
@@ -114,9 +117,11 @@ body {
   }
 
   h4 {
-    color: #dadbdf;
-    font-weight: 600;
-    // font-size: $heading3Size;
+    &:not(:first-child) {
+      color: mix(#036, #fff);
+      font-weight: 600;
+      text-shadow: none;
+    }
   }
 
   h3, h4 {
@@ -128,23 +133,48 @@ body {
     margin-right: auto;
     max-width: 15em;
     padding-left: .75em;
+
+    li {
+      margin-bottom: .25em;
+    }
+  }
+
+  ul.reading-list {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  ol {
+    max-width: 100%;
+    width: 100%;
   }
 
   pre {
+    box-shadow: none;
+    display: block;
+    font-size: $mainFontSize * .9;
     line-height: 0;
     margin: 0 auto;
-    max-width: 55ch;
+    max-height: 100%;
+    max-width: 100%;
     padding: 0;
+    text-align: center;
+    white-space: normal;
 
     code {
       background: rgba(mix($backgroundColor, #000), .75);
       border: 2px solid rgba($mainColor, .25);
       border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(#000, .6);
       color: #fff;
-      display: block;
+      display: inline-block;
       line-height: 1.4;
       margin: 0;
-      padding: 2ch;
+      max-height: inherit;
+      max-width: inherit;
+      padding: 1ch;
+      text-align: left;
+      white-space: pre;
 
       .hljs-comment {
         color: #699;
@@ -179,12 +209,13 @@ body {
 
   code {
     font-family: Operator Mono, Input Mono, monospace;
-    font-kerning: initial;
-    font-variant-ligatures: initial;
+    font-kerning: normal;
+    font-variant-ligatures: normal;
     -moz-font-feature-settings: normal;
     -ms-font-feature-settings: normal;
     -webkit-font-feature-settings: normal;
     font-feature-settings: normal;
+    font-size: inherit;
   }
 
   img[src*=".png"],

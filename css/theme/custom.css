@@ -27,7 +27,10 @@ body {
   -moz-osx-font-smoothing: antialiased; }
   .reveal .slides p,
   .reveal .slides li {
-    font-weight: 600; }
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 22.5em; }
     .reveal .slides p:last-child,
     .reveal .slides li:last-child {
       margin-bottom: 0; }
@@ -46,9 +49,10 @@ body {
       font-weight: normal;
       padding-bottom: .1618em;
       text-transform: none; }
-  .reveal .slides h4 {
-    color: #dadbdf;
-    font-weight: 600; }
+  .reveal .slides h4:not(:first-child) {
+    color: #8099b3;
+    font-weight: 600;
+    text-shadow: none; }
   .reveal .slides h3, .reveal .slides h4 {
     text-transform: none; }
   .reveal .slides ul, .reveal .slides ol {
@@ -56,20 +60,39 @@ body {
     margin-right: auto;
     max-width: 15em;
     padding-left: .75em; }
+    .reveal .slides ul li, .reveal .slides ol li {
+      margin-bottom: .25em; }
+  .reveal .slides ul.reading-list {
+    max-width: 100%;
+    width: 100%; }
+  .reveal .slides ol {
+    max-width: 100%;
+    width: 100%; }
   .reveal .slides pre {
+    box-shadow: none;
+    display: block;
+    font-size: 34.2px;
     line-height: 0;
     margin: 0 auto;
-    max-width: 55ch;
-    padding: 0; }
+    max-height: 100%;
+    max-width: 100%;
+    padding: 0;
+    text-align: center;
+    white-space: normal; }
     .reveal .slides pre code {
       background: rgba(19, 20, 22, 0.75);
       border: 2px solid rgba(255, 255, 255, 0.25);
       border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
       color: #fff;
-      display: block;
+      display: inline-block;
       line-height: 1.4;
       margin: 0;
-      padding: 2ch; }
+      max-height: inherit;
+      max-width: inherit;
+      padding: 1ch;
+      text-align: left;
+      white-space: pre; }
       .reveal .slides pre code .hljs-comment {
         color: #699; }
       .reveal .slides pre code .hljs-selector-pseudo,
@@ -89,16 +112,17 @@ body {
         color: #998099; }
   .reveal .slides code {
     font-family: Operator Mono, Input Mono, monospace;
-    -webkit-font-kerning: initial;
-       -moz-font-kerning: initial;
-            font-kerning: initial;
-    -webkit-font-variant-ligatures: initial;
-       -moz-font-variant-ligatures: initial;
-            font-variant-ligatures: initial;
+    -webkit-font-kerning: normal;
+       -moz-font-kerning: normal;
+            font-kerning: normal;
+    -webkit-font-variant-ligatures: normal;
+       -moz-font-variant-ligatures: normal;
+            font-variant-ligatures: normal;
     -moz-font-feature-settings: normal;
     -ms-font-feature-settings: normal;
     -webkit-font-feature-settings: normal;
-    font-feature-settings: normal; }
+    font-feature-settings: normal;
+    font-size: inherit; }
   .reveal .slides img[src*=".png"],
   .reveal .slides img[src*=".svg"] {
     background-color: transparent;

@@ -39,26 +39,45 @@
           <img class="logo" src="/img/sass-logo.png" alt="Sass Logo">
           <img class="logo" src="/img/postcss-logo.svg" alt="PostCSS Logo">
         </section>
+        <section>
+          <ol>
+            <li class="fragment"><h3>Sass &ldquo;versus&rdquo; PostCSS</h3></li>
+            <li class="fragment"><h3>Sass with PostCSS</h3></li>
+            <li class="fragment"><h3>Cautions about PostCSS</h3></li>
+          </ol>
+        </section>
       </section>
       <section>
         <section>
-          <h2>Sass <span>versus</span> PostCSS</h2>
+          <h2>Sass <span>&ldquo;versus&rdquo;</span> PostCSS</h2>
         </section>
         <section data-background="http://i.giphy.com/kpBwuCo7gHiko.gif"></section>
         <section>
-          <h3>PostCSS Is a Preprocessor<br /> <i style="font-weight:300">(of Sorts&hellip;)</i></h3>
+          <h3>PostCSS Is a Preprocessor<br /> <i class="fragment" style="font-weight:300">(of Sorts&hellip;)</i></h3>
+          <p class="fragment">Modifies your CSS <i>before</i> it gets to a browser</p>
         </section>
         <section>
           <h3>PostCSS Doesn&rsquo;t<br /> Replace Preprocessors</h3>
+          <p class="fragment">Modifies CSS in a different way from other preprocessors</p>
+        </section>
+        <section>
+          <h3>Abstract Syntax Tree Parser</h3>
+          <p class="fragment">Converts CSS (a string in a file) into a giant object</p>
+          <p class="fragment">Allows JS to traverse that object &amp; add/remove/edit</p>
+          <p class="fragment">PostCSS alone does <i>nothing</i> to your CSS;<br /> PostCSS plugins make all the changes.</p>
         </section>
       </section>
       <section>
         <section>
           <h2>Sass <span>with</span> PostCSS</h2>
         </section>
-        <section data-background="http://i.giphy.com/g3xeQPxe9HAWI.gif" data-background-size="contain"></section>
+        <section data-background="http://i.giphy.com/g3xeQPxe9HAWI.gif"></section>
         <section>
           <h3>Advantages of<br /> Sass &amp; Friends</h3>
+          <h4 class="fragment">Pre-Built Features</h4>
+          <h4 class="fragment">Community Support</h4>
+        </section>
+        <section>
           <h4>Pre-Built Features</h4>
           <ul>
             <li class="fragment">Variables</li>
@@ -67,7 +86,6 @@
           </ul>
         </section>
         <section>
-          <h3>Advantages of<br /> Sass &amp; Friends</h3>
           <h4>Community Support</h4>
           <ul>
             <li class="fragment">Documentation</li>
@@ -77,6 +95,10 @@
         </section>
         <section>
           <h3>Advantages of<br /> PostCSS</h3>
+          <h4 class="fragment">CSS Manipulation</h4>
+          <h4 class="fragment">Custom Syntax</h4>
+        </section>
+        <section>
           <h4>CSS Manipulation</h4>
           <ul>
             <li class="fragment">Vendor prefixes</li>
@@ -85,7 +107,24 @@
           </ul>
         </section>
         <section>
-          <h3>Advantages of<br /> PostCSS</h3>
+          <h4>Example: Prefixes</h4>
+          <pre>
+            <code class="scss">// Bourbon Mixin for Sass
+.element {
+  @include transform(rotate(90deg));
+}</code>
+          </pre>
+        </section>
+        <section>
+          <h4>Example: Prefixes</h4>
+          <pre>
+            <code class="css">/* Autoprefixer */
+.element {
+  transform: rotate(90deg);
+}</code>
+          </pre>
+        </section>
+        <section>
           <h4>Custom Syntax</h4>
           <ul>
             <li class="fragment">Write custom &ldquo;CSS&rdquo; properties</li>
@@ -93,20 +132,30 @@
           </ul>
         </section>
         <section>
-          <h4>Custom Syntax</h4>
+          <h4>Example: Grid Math</h4>
           <pre>
-            <code class="css">.element {
+            <code class="scss">// Neat Mixin for Sass
+.element {
+  @include span-columns(3 of 12);
+}</code>
+          </pre>
+        </section>
+        <section>
+          <h4>Example: Grid Math</h4>
+          <pre>
+            <code class="css">/* PostCSS "Grid" Plugin */
+.element {
   grid-span: 3, 12;
 }</code>
           </pre>
         </section>
         <section>
-          <h4>Custom Syntax</h4>
+          <h4>Example: Grid Math</h4>
           <pre>
             <code class="css">.element {
   float: left;
-  margin-right: 1.69492%;
-  width: 23.72881%;
+  margin-right: 2.3576516%;
+  width: 23.2317613%;
 }
 .element:last-child {
   margin-right: 0;
@@ -118,71 +167,73 @@
         </section>
         <section>
           <pre>
-            <code class="javascript" data-trim>/* Required packages */
-var gulp         = require('gulp');
-var glob         = require('glob');
-
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-
-var postcss      = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var cssnano      = require('cssnano');
-var mqpacker     = require('css-mqpacker');
-var order        = require('postcss-ordered-values');</code>
+            <code class="javascript" data-trim>/* Gulp/Sass packages */
+var gulp       = require('gulp');
+var glob       = require('glob');
+var sass       = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');</code>
           </pre>
         </section>
         <section>
           <pre>
             <code class="javascript" data-trim>gulp.task('sass', function() {
   gulp.src('src/scss/styles.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass({outputStyle: 'expanded'}))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('src/css/'));
+    .pipe( sourcemaps.init() )
+    .pipe( sass({outputStyle: 'expanded'}) )
+    .pipe( sourcemaps.write() )
+    .pipe( gulp.dest('src/css/') );
 });</code>
           </pre>
         </section>
         <section>
           <pre>
-            <code class="javascript" data-trim>gulp.task('css', function() {
-  var _postcss = [
-    autoprefixer({
-      browsers: ['last 3 versions'],
-      cascade:  false
-    }),
-    order(),
-    mqpacker({sort: true}),
+            <code class="javascript" data-trim>/* PostCSS packages */
+var postcss  = require('gulp-postcss');
+var prefix   = require('autoprefixer');
+var cssnano  = require('cssnano');
+var sorting  = require('postcss-sorting');</code>
+          </pre>
+        </section>
+        <section>
+          <pre>
+            <code class="javascript" data-trim>gulp.task('postcss', function() {
+  var postcss_tools = [
+    prefix({browsers: ['last 3 versions']}),
+    sorting()
   ];
-  if ( is_production ) _postcss.push(cssnano());
+  if ( is_production )
+    postcss_tools.push(cssnano());
   gulp.src('src/css/styles.css')
-    .pipe(postcss(_postcss))
-    .pipe(gulp.dest('src/css/'));
+    .pipe( postcss(postcss_tools) )
+    .pipe( gulp.dest('src/css/') );
 });</code>
           </pre>
         </section>
       </section>
       <section>
         <section>
-          <h2>Cautions with PostCSS</h2>
+          <h2>Cautions about PostCSS</h2>
         </section>
         <section data-background="http://www.reactiongifs.com/wp-content/uploads/2013/06/opinionated.gif" data-background-size="contain"></section>
         <section>
           <h3>Avoid Non-CSS Input</h3>
-          <p><i>Just my opinion:</i><br />Use Sass to turn non-CSS into CSS;<br />use PostCSS to turn CSS into better CSS.</p>
+          <p>Use Sass to turn non-CSS into CSS;<br /> use PostCSS to turn CSS into better CSS.</p>
         </section>
         <section>
           <h3>Be Careful with<br /> &ldquo;Prolly-Fill&rdquo; Code</h3>
-          <p>All you&rsquo;ll ever get from PostCSS is &hellip; CSS;<br />PostCSS can&rsquo;t make unsupported CSS work.</p>
+          <p>All you&rsquo;ll ever get from PostCSS is &hellip; CSS;<br /> PostCSS can&rsquo;t make unsupported CSS work.</p>
         </section>
       </section>
       <section>
         <h2>Further Reading</h2>
-        <ul>
-          <li><a href="http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889">PostCSS Deep Dive</a></li>
-          <li><a href="http://josephrex.me/moving-to-postcss/">Moving to PostCSS</a></li>
+        <ul class="reading-list">
           <li><a href="http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/">It&rsquo;s Time for Everyone to Learn about PostCSS</a></li>
+          <li><a href="http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/">Some things you may think about PostCSS&hellip; and you might be wrong</a></li>
+          <li><a href="https://medium.com/@cathy_dutton/start-using-postcss-today-c06d8c498723#.pawqjbg9i">Start Using PostCSS Today</a></li>
+          <li><a href="https://ashleynolan.co.uk/blog/extend-sass-with-postcss">Extend Sass with PostCSS</a></li>
+          <li><a href="http://josephrex.me/moving-to-postcss/">Moving to PostCSS</a></li>
           <li><a href="http://leveluptuts.com/tutorials/postcss-tutorials">Level Up PostCSS Tutorials</a></li>
+          <li><a href="http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889">PostCSS Deep Dive</a></li>
         </ul>
       </section>
       <section>
@@ -207,7 +258,7 @@ var order        = require('postcss-ordered-values');</code>
   // More info https://github.com/hakimel/reveal.js#configuration
   Reveal.initialize({
     history: true,
-    transition: 'none',
+    transition: 'fade',
     width: 1000,
     height: 750,
 
