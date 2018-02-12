@@ -82,7 +82,11 @@
           <h3>Abstract Syntax Tree Parser</h3>
           <p class="fragment">Converts CSS (a string in a file) into a giant object</p>
           <p class="fragment">Allows JS to traverse that object &amp; add/remove/edit</p>
-          <p class="fragment">PostCSS alone does <i>nothing</i> to your CSS;<br /> PostCSS plugins make all the changes.</p>
+          <p class="fragment">Turns that object back into a string for the CSS file</p>
+        </section>
+        <section>
+          <h3 >PostCSS alone does <i>nothing</i> to your CSS;</h3>
+          <h3 class="fragment">PostCSS <i>plugins</i> make all the changes.</h3>
         </section>
       </section>
       <section>
@@ -186,30 +190,26 @@
         <section>
           <pre>
             <code class="javascript" data-trim>/* Gulp/Sass packages */
-var gulp       = require('gulp');
-var glob       = require('glob');
-var sass       = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');</code>
+var gulp = require('gulp');
+var sass = require('gulp-sass');</code>
           </pre>
         </section>
         <section>
           <pre>
             <code class="javascript" data-trim>gulp.task('sass', function() {
   gulp.src('src/scss/styles.scss')
-    .pipe( sourcemaps.init() )
-    .pipe( sass({outputStyle: 'expanded'}) )
-    .pipe( sourcemaps.write() )
-    .pipe( gulp.dest('src/css/') );
+    .pipe(sass({outputStyle: 'expanded'}))
+    .pipe(gulp.dest('src/css/'));
 });</code>
           </pre>
         </section>
         <section>
           <pre>
             <code class="javascript" data-trim>/* PostCSS packages */
-var postcss  = require('gulp-postcss');
-var prefix   = require('autoprefixer');
-var cssnano  = require('cssnano');
-var sorting  = require('postcss-sorting');</code>
+var postcss = require('gulp-postcss');
+var prefix  = require('autoprefixer');
+var cssnano = require('cssnano');
+var sorting = require('postcss-sorting');</code>
           </pre>
         </section>
         <section>
@@ -219,11 +219,12 @@ var sorting  = require('postcss-sorting');</code>
     prefix({browsers: ['last 3 versions']}),
     sorting()
   ];
-  if ( is_production )
-    postcss_tools.push(cssnano());
+
+  if (is_prod) postcss_tools.push(cssnano());
+
   gulp.src('src/css/styles.css')
-    .pipe( postcss(postcss_tools) )
-    .pipe( gulp.dest('src/css/') );
+    .pipe(postcss(postcss_tools))
+    .pipe(gulp.dest('src/css/'));
 });</code>
           </pre>
         </section>
@@ -267,6 +268,26 @@ var sorting  = require('postcss-sorting');</code>
           </ul>
         </section>
         <section>
+          <h4>Improve Your CSS with a Bunch of Plugins All at Once</h4>
+          <h5>Narwin-Pack</h5>
+          <ul>
+            <li class="fragment">Import multiple CSS files with <a href="https://github.com/jonathantneal/postcss-partial-import"><code>postcss-partial-import</code></a></li>
+            <li class="fragment">Use custom properties like variables with <a href="https://github.com/postcss/postcss-custom-properties"><code>postcss-custom-properties</code></a></li>
+            <li class="fragment">Nest selectors like Sass with <a href="https://github.com/postcss/postcss-nested"><code>postcss-nested</code></a></li>
+            <li class="fragment">Manage prefixes with <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
+          </ul>
+        </section>
+        <section>
+          <h4>Improve Your CSS with a Bunch of Plugins All at Once</h4>
+          <h5>Narwin-Pack, cont'd </h5>
+          <ul>
+            <li class="fragment">Manage prefixes with <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
+            <li class="fragment">Use inline SVGs with <a href="https://github.com/TrySound/postcss-inline-svg"><code>postcss-inline-svg</code></a></li>
+            <li class="fragment">Optimize those inline SVGs with <a href="https://github.com/ben-eb/postcss-svgo"><code>postcss-svgo</code></a></li>
+            <li class="fragment">Add alpha transparency to hex colors with <a href="https://github.com/seaneking/postcss-hexrgba"><code>postcss-hexrgba</code></a></li>
+          </ul>
+        </section>
+        <section>
           <h4>Analyze Your CSS</h4>
           <ul>
             <li>See all the details about your selectors, properties, etc with <a href="https://github.com/cssstats/postcss-cssstats"><code>cssstats</code></a></li>
@@ -276,7 +297,11 @@ var sorting  = require('postcss-sorting');</code>
           </ul>
         </section>
         <section>
-          <h2>Further Reading</h2>
+          <h4>Build Your Own Plugin!</h4>
+          <p><a href="https://webdesign.tutsplus.com/tutorials/postcss-deep-dive-create-your-own-plugin--cms-24605">PostCSS Deep Dive: Create Your Own Plugin</a></p>
+        </section>
+        <section>
+          <h4>Further Reading</h4>
           <ul class="reading-list">
             <li><a href="http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/">It&rsquo;s Time for Everyone to Learn about PostCSS</a></li>
             <li><a href="http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong/">Some things you may think about PostCSS&hellip; and you might be wrong</a></li>
@@ -300,7 +325,7 @@ var sorting  = require('postcss-sorting');</code>
           <p><a href="https://github.com/jdsteinbach">GH/jdsteinbach</a></p>
         </section>
       </section>
-      <footer>CascadiaCSS 2016 <a href="https://twitter.com/jdsteinbach">@jdsteinbach</a> <a href="https://jdsteinbach.com/sass-postcss">jdsteinbach.com/sass-postcss</a></footer>
+      <footer>DenverSassHack <a href="https://twitter.com/jdsteinbach">@jdsteinbach</a> <a href="https://jdsteinbach.com/sass-postcss">jdsteinbach.com/sass-postcss</a></footer>
     </div>
   </div>
 
@@ -316,8 +341,6 @@ var sorting  = require('postcss-sorting');</code>
 
     // More info https://github.com/hakimel/reveal.js#dependencies
     dependencies: [
-      // { src: 'plugin/markdown/marked.js' },
-      // { src: 'plugin/markdown/markdown.js' },
       {
         src: 'plugin/notes/notes.js',
         async: true

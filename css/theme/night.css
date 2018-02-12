@@ -210,7 +210,6 @@ body {
 .reveal a {
   color: #e7ad52;
   text-decoration: none;
-  -webkit-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
@@ -236,7 +235,6 @@ body {
   box-shadow: none; }
 
 .reveal a img {
-  -webkit-transition: all .15s linear;
   transition: all .15s linear; }
 
 .reveal a:hover img {
@@ -283,5 +281,4 @@ body {
 
 .reveal .progress span {
   background: #e7ad52;
-  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }

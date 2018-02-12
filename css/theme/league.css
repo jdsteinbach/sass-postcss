@@ -12,8 +12,6 @@
  *********************************************/
 body {
   background: #1c1e20;
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
-  background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
   background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
   background-color: #2b2b2b; }
 
@@ -215,7 +213,6 @@ body {
 .reveal a {
   color: #13DAEC;
   text-decoration: none;
-  -webkit-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
@@ -241,7 +238,6 @@ body {
   box-shadow: none; }
 
 .reveal a img {
-  -webkit-transition: all .15s linear;
   transition: all .15s linear; }
 
 .reveal a:hover img {
@@ -288,5 +284,4 @@ body {
 
 .reveal .progress span {
   background: #13DAEC;
-  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
