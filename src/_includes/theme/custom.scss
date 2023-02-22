@@ -65,7 +65,7 @@ body {
   font-kerning: normal;
   font-variant-ligatures: common-ligatures contextual;
   font-feature-settings: "kern", "liga", "clig", "calt";
-  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 
   p {
     line-height: 1.3;
