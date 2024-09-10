@@ -18,14 +18,14 @@
   "author": "James Steinbach",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0",
-    "autoprefixer": "^10.4.13",
-    "cheerio": "^1.0.0-rc.12",
-    "cssnano": "^5.1.15",
-    "markdown-it": "^13.0.1",
-    "markdown-it-highlightjs": "^4.0.1",
-    "postcss": "^8.4.21",
-    "reveal.js": "^4.4.0",
-    "sass": "^1.58.3"
+    "@11ty/eleventy": "^2.0.1",
+    "autoprefixer": "^10.4.20",
+    "cheerio": "^1.0.0",
+    "cssnano": "^7.0.6",
+    "markdown-it": "^14.1.0",
+    "markdown-it-highlightjs": "^4.1.0",
+    "postcss": "^8.4.45",
+    "reveal.js": "^5.1.0",
+    "sass": "^1.78.0"
   }
 }
